@@ -17,4 +17,12 @@ public class AdminPageController {
 	public String editCategory(){
 		return "admin/editCategory";
 	}
+	@GetMapping(value = "admin_book_list")
+	public String listBook(){
+		return "admin/listBook";
+	}
+	@GetMapping(value = "admin_user_list")
+	public String listUser(){
+		return "admin/listUser";
+	}
 }

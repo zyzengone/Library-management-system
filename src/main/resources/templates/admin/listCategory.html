@@ -79,9 +79,9 @@
             <thead>
             <tr class="success">
                 <th>ID</th>
-                <th>封面</th>
+                <!--<th>封面</th>-->
                 <th>分类名称</th>
-                <th>属性管理</th>
+                <!--<th>属性管理</th>-->
                 <th>书籍管理</th>
                 <th>编辑</th>
                 <th>删除</th>
@@ -90,17 +90,17 @@
             <tbody>
             <tr v-for="bean in beans ">
                 <td>{{bean.id}}</td>
-                <td>
-                    <img height="40px"  :src="'img/category/'+bean.id+'.jpg'">
-                </td>
+                <!--<td>-->
+                    <!--<img height="40px"  :src="'img/category/'+bean.id+'.jpg'">-->
+                <!--</td>-->
                 <td>
                     {{bean.name}}
                 </td>
+                <!--<td>-->
+                    <!--<a :href="'admin_property_list?cid=' + bean.id "><span class="glyphicon glyphicon-th-list"></span></a>-->
+                <!--</td>-->
                 <td>
-                    <a :href="'admin_property_list?cid=' + bean.id "><span class="glyphicon glyphicon-th-list"></span></a>
-                </td>
-                <td>
-                    <a :href="'admin_product_list?cid=' + bean.id "><span class="glyphicon glyphicon-shopping-cart"></span></a>
+                    <a :href="'admin_book_list?cid=' + bean.id "><span class="glyphicon glyphicon-shopping-cart"></span></a>
                 </td>
                 <td>
                     <a :href="'admin_category_edit?id=' + bean.id "><span class="glyphicon glyphicon-edit"></span></a>

@@ -9,7 +9,7 @@
     <script>
         $(function () {
             var data4Vue={
-                uri:'category',
+                uri:'categories',
                 listURL:'admin_category_list',
                 bean:{id:0,name:'',hp:''},
                 file:''
@@ -29,6 +29,7 @@
                         })
                     },
                     update:function () {
+                        var id = getUrlParms("id");
                         var url = this.uri+"/"+id;
                         var formData = new FormData;
                         formData.append("image",this.file);
