@@ -30,11 +30,11 @@
                     },
                     update:function () {
                         var id = getUrlParms("id");
-                        var url = this.uri+"/"+id;
-                        var formData = new FormData;
-                        formData.append("image",this.file);
-                        formData.append("name",this.bean.name);
-                        axios.get(url).then(function (response) {
+                        var url = this.uri;
+                        // var formData = new FormData;
+                        // formData.append("image",this.file);
+                        // formData.append("name",this.bean.name);
+                        axios.put(url,vue.bean).then(function (response) {
                             location.href = vue.listURL;
                         });
                     },

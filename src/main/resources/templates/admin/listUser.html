@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="include/admin/adminHeader::html('用户管理')">
+</head>
+<body>
+<div th:replace="include/admin/adminNavigator::html"></div>
+<script>
+    $(function () {
+        var data4Vue = {
+            beans:[],
+            uri:"users",
+            pagination:{}
+        };
+        var vue = new Vue({
+            el:"#workingArea",
+            data:data4Vue,
+            mounted:function(){
+                this.list(0)
+            },
+            methods:{
+                list:function (start) {
+                    var url = this.uri+"?start="+start;
+                    axios.get(url).then(function (response) {
+                        vue.beans = response.data.content;
+                        vue.pagination = response.data;
+                    })
+                }
+            }
+        })
+    })
+</script>
+<div id="workingArea">
+    <ol class="breadcrumb">
+        <li><a href="admin_category_list">所有分类</a></li>
+        <li class="active">用户管理</li>
+    </ol>
+    <div class="listDataTableDiv">
+        <table class="table table-striped table-bordered table-hover  table-condensed">
+            <thead>
+            <tr>
+                <td>ID</td>
+                <td>姓名</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr v-for="bean in beans ">
+                <td>{{bean.id}}</td>
+                <td><a :href="'admin_orderbook_list?uid=' + bean.id">{{bean.name}}</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div th:replace="include/admin/adminPage::html" ></div>
+</div>
+</body>
+</html>

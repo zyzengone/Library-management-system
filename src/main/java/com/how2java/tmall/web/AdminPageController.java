@@ -25,4 +25,16 @@ public class AdminPageController {
 	public String listUser(){
 		return "admin/listUser";
 	}
+	@GetMapping(value = "admin_orderbook_list")
+    public String listOrderbook(){
+	    return "admin/listOrderBook";
+    }
+    @GetMapping(value = "admin_orderall_list")
+    public String listOrderAll(){
+        return "admin/listOrderAll";
+    }
+    @GetMapping(value = "admin_login")
+	public String login(){
+		return "admin/login";
+	}
 }

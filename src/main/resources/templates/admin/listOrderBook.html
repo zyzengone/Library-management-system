@@ -6,30 +6,30 @@
 <div th:replace="include/admin/adminNavigator::html"></div>
 <script>
     $(function () {
-        var cid = getUrlParms("cid");
+        var uid = getUrlParms("uid");
         var data4Vue={
-            uri:"books",
+            uri:"orderbooks",
             beans:[],
-            bean:{id:0,name:'',category:{id:0}},
+            bean:{id:0,name:'',user:{id:0},borrowDate:''},
             pagination:{},
-            category:''
+            user:''
         }
         var vue = new Vue({
             el:"#workingArea",
             data: data4Vue,
             mounted:function () {
-                this.getCategory(cid);
+                this.getUser(uid);
                 this.list(0);
             },
             methods:{
-                getCategory:function (cid) {
-                    var url = "categories/"+cid;
+                getUser:function (uid) {
+                    var url = "orderbooks/"+uid;
                     axios.get(url).then(function (response) {
-                        vue.category = response.data; //获取category的名称放在{{categor.name}}上
+                        vue.user = response.data; //获取category的名称放在{{categor.name}}上
                     })
                 },
                 list:function (start) {
-                    var url = "categories/"+cid+"/"+this.uri+"?start="+start;
+                    var url = "orderbooks/"+uid+"?start="+start;
                     axios.get(url).then(function (response) {
                         vue.pagination = response.data;
                         vue.beans = response.data.content;
@@ -37,10 +37,10 @@
                 },
                 add:function () {
                     var url = this.uri;
-                    this.bean.category.id = cid;
+                    this.bean.user.id = uid;
                     axios.post(url,this.bean).then(function (response) {
                         vue.list(0);
-                        vue.bean = {id:0,name:'',category:{id:0}}
+                        vue.bean = {id:0,name:'',user:{id:0}}
                     })
                 },
                 deleteBean:function (id) {
@@ -54,13 +54,19 @@
                 }
             }
         })
+        Vue.filter('formatDateFilter', function (value, formatString) {
+            if(null==value)
+                return "";
+            formatString = formatString || 'YYYY-MM-DD HH:mm:ss';
+            return moment(value).format(formatString);
+        });
     })
 </script>
 <div id="workingArea" >
     <ol class="breadcrumb">
-        <li><a href="admin_category_list">所有分类</a></li>
-        <li><a :href="'admin_book_list?cid='+category.id">{{category.name}}</a></li>
-        <li class="active">书籍管理</li>
+        <li><a href="/admin_user_list">用户</a></li>
+        <li><a :href="'admin_orderbook_list?uid='+user.id">{{user.name}}</a></li>
+        <li class="active">借阅信息</li>
     </ol>
 
     <div class="listDataTableDiv">
@@ -69,8 +75,9 @@
             <tr class="success">
                 <th>ID</th>
                 <th>书籍名称</th>
-                <th>编辑</th>
-                <th>删除</th>
+                <th>用户名称</th>
+                <th>借阅日期</th>
+                <th>归还期限</th>
             </tr>
             </thead>
             <tbody>
@@ -80,10 +87,13 @@
                     {{bean.name}}
                 </td>
                 <td>
-                    <a :href="'admin_book_edit?id=' + bean.id "><span class="glyphicon glyphicon-edit"></span></a>
+                    {{bean.user.name}}
                 </td>
                 <td>
-                    <a href="#nowhere"  @click="deleteBean(bean.id)"><span class="   glyphicon glyphicon-trash"></span></a>
+                   {{bean.borrowDate|formatDateFilter}}
+                </td>
+                <td>
+                   {{30}}
                 </td>
             </tr>
             </tbody>
@@ -93,7 +103,7 @@
     <div th:replace="include/admin/adminPage::html" ></div>
 
     <div class="panel panel-warning addDiv">
-        <div class="panel-heading">新增书籍</div>
+        <div class="panel-heading">测试</div>
         <div class="panel-body">
             <table class="addTable">
                 <tr>

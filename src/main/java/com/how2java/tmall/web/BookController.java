@@ -25,4 +25,9 @@ public class BookController {
         bookService.add(bean);
         return bean;
     }
+    @DeleteMapping("/books/{id}")
+    public String delete(@PathVariable("id") int id){
+        bookService.delete(id);
+        return null;
+    }
 }

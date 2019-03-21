@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="include/admin/adminHeader::html('管理员登陆')">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form id="from">
+    <div class="mycenter">
+        <div class="mysign">
+            <div class="col-lg-11 text-center text-info">
+                <h2>
+                    请登录</h2>
+            </div>
+            <div class="col-lg-10">
+                <input type="text" class="form-control" name="username" placeholder="请输入账户名" required
+                       autofocus />
+            </div>
+            <div class="col-lg-10">
+            </div>
+            <div class="col-lg-10">
+                <input type="password" class="form-control" name="password" placeholder="请输入密码" required
+                       autofocus />
+            </div>
+            <div class="col-lg-10">
+            </div>
+            <div class="col-lg-10 mycheckbox checkbox">
+                <input type="checkbox" class="col-lg-1">记住密码</input>
+            </div>
+            <div class="col-lg-10">
+            </div>
+            <div class="col-lg-10">
+                <button type="button" id="btn" class="btn btn-success col-lg-12">
+                    登录</button>
+            </div>
+        </div>
+    </div>
+</form>
+</body>
+</html>
