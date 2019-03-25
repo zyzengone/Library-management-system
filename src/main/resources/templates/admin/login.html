@@ -1,11 +1,36 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:include="include/admin/adminHeader::html('管理员登陆')">
-    <meta charset="UTF-8">
-    <title>Title</title>
 </head>
-<body>
-<form id="from">
+<body id="body">
+<script>
+    $(function () {
+        var data4Vue = {
+            uri:"login",
+            result:{},
+            user:{name:'',passWord:''}
+        }
+        var vue = new Vue({
+            el:'#from',
+            data:data4Vue,
+            methods:{
+                login:function () {
+                    axios.post(vue.uri,this.user).then(function (response) {
+                      vue.result =  response.data
+                        if (vue.result.code ==1){
+                            location.href="admin_category_list"
+                        }
+                        else{
+                            alert(vue.result.message)
+                        }
+                    })
+                }
+            }
+        });
+    });
+</script>
+<div id="from">
+<form>
     <div class="mycenter">
         <div class="mysign">
             <div class="col-lg-11 text-center text-info">
@@ -13,13 +38,13 @@
                     请登录</h2>
             </div>
             <div class="col-lg-10">
-                <input type="text" class="form-control" name="username" placeholder="请输入账户名" required
+                <input v-model="user.name" type="text" class="form-control" name="username" placeholder="请输入账户名" required
                        autofocus />
             </div>
             <div class="col-lg-10">
             </div>
             <div class="col-lg-10">
-                <input type="password" class="form-control" name="password" placeholder="请输入密码" required
+                <input v-model="user.passWord" type="password" class="form-control" name="password" placeholder="请输入密码" required
                        autofocus />
             </div>
             <div class="col-lg-10">
@@ -30,11 +55,12 @@
             <div class="col-lg-10">
             </div>
             <div class="col-lg-10">
-                <button type="button" id="btn" class="btn btn-success col-lg-12">
+                <button @click="login" type="button" id="btn" class="btn btn-success col-lg-12">
                     登录</button>
             </div>
         </div>
     </div>
 </form>
+</div>
 </body>
 </html>

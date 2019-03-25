@@ -18,12 +18,13 @@ public class CategoryService {
 	@Autowired CategoryDAO categoryDAO;
 
 
-	public Page4Navigator<Category> list(int start, int size, int navigatePages) {
+	public Page list(int start, int size, int navigatePages) {
 		Sort sort = new Sort(Sort.Direction.DESC, "id");
 		Pageable pageable = new PageRequest(start, size,sort);
-		Page pageFromJPA =categoryDAO.findAll(pageable);
+		Page pageFromJPA =categoryDAO.findAll(pageable);  //categoryDAO.findAll方法返回的结果就是一个page对象。当然是jpa中封装好的方法
 
-		return new Page4Navigator<>(pageFromJPA,navigatePages);
+//		return new Page4Navigator<>(pageFromJPA,navigatePages);
+		return pageFromJPA;
 	}
 	public List<Category> list() {
     	Sort sort = new Sort(Sort.Direction.DESC, "id");

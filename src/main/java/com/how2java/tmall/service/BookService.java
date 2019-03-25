@@ -11,6 +11,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 
 @Service
 public class BookService {
@@ -35,5 +37,11 @@ public class BookService {
         Pageable pageable = new PageRequest(start,size,sort);
         Page<Book> pageFromJPA = bookDAO.findByCategory(category,pageable);
         return new Page4Navigator<>(pageFromJPA,navigatePages);
+    }
+    public List<Book> search(String name, int start, int size){
+        Sort sort = new Sort(Sort.Direction.DESC,"id");
+        Pageable page = new PageRequest(start,size,sort);
+        List<Book> books = bookDAO.findByNameLike("%"+name+"%",page);
+        return books;
     }
 }

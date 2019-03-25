@@ -23,4 +23,7 @@ public class UserService {
         Page pageFormat = userDAO.findAll(pageable);
         return new Page4Navigator(pageFormat,navigatePages);
     }
+    public User get(String name,String password){
+        return userDAO.getByNameAndPassWord(name,password);
+    }
 }

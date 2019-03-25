@@ -10,6 +10,7 @@ public class User {
     @Column(name = "id")
     private int id;
     private String name;
+    private String passWord;
 
     public String getName() {
         return name;
@@ -25,5 +26,13 @@ public class User {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getPassWord() {
+        return passWord;
+    }
+
+    public void setPassWord(String passWord) {
+        this.passWord = passWord;
     }
 }

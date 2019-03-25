@@ -109,10 +109,11 @@ th{
 
 
 
-
+#body
+{background:#FFF url(/img/background.jpg) repeat-x 0}
 #from
 {
-	background-color: #96b97d;
+	background-color:rgba(125,185,222,0.5);
 }
 .mycenter
 {
@@ -142,4 +143,7 @@ th{
 	margin-bottom: 10px;
 	height: 10px;
 }
-        
+#search
+{
+	margin-bottom: 10px;
+}

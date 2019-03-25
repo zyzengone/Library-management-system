@@ -38,7 +38,7 @@
                 add:function () {
                     var url = this.uri;
                     this.bean.category.id = cid;
-                    axios.post(url,this.bean).then(function (response) {
+                    axios.post(url,this.bean).then(function () {
                         vue.list(0);
                         vue.bean = {id:0,name:'',category:{id:0}}
                     })

@@ -5,10 +5,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 //用于后台管理页面的页面跳转
 @Controller
 public class AdminPageController {
-	@GetMapping(value="/admin")
+	@GetMapping(value="admin")
     public String admin(){
 		return "redirect:admin_category_list";
-    }
+    } //客户端跳转
 	@GetMapping(value="/admin_category_list")
 	public String listCategory(){
 		return "admin/listCategory";
@@ -36,5 +36,9 @@ public class AdminPageController {
     @GetMapping(value = "admin_login")
 	public String login(){
 		return "admin/login";
+	}
+	@GetMapping(value = "admin_search")
+	public String searchBooks(){
+		return "admin/searchpage";
 	}
 }

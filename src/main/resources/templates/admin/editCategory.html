@@ -7,12 +7,11 @@
 <body>
     <div th:replace="include/admin/adminNavigator::html"></div>
     <script>
-        $(function () {
+        $(function () {      //$(function(){...})jquery中表示文档一载入完毕就执行
             var data4Vue={
                 uri:'categories',
                 listURL:'admin_category_list',
-                bean:{id:0,name:'',hp:''},
-                file:''
+                bean:{id:0,name:''},
             };
             var vue = new Vue({
                 el:'#workingArea',
