@@ -13,6 +13,13 @@ import javax.servlet.http.HttpServletRequest;
 public class BookController {
     @Autowired
     BookService bookService;
+    @GetMapping("/books")
+    public Page4Navigator<Book> list(@RequestParam(value = "start",defaultValue = "0") int start,
+                                     @RequestParam(value ="size",defaultValue = "5")int size){
+        start = start<0?0:start;
+        Page4Navigator<Book> page = bookService.listAll(start,size,5);
+        return page;
+    }
     @GetMapping("/categories/{cid}/books")
     public Page4Navigator<Book> list(@PathVariable("cid") int cid, @RequestParam(value = "start",defaultValue = "0")int start,
                                      @RequestParam(value = "size",defaultValue = "5")int size){

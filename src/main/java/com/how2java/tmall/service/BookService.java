@@ -38,6 +38,12 @@ public class BookService {
         Page<Book> pageFromJPA = bookDAO.findByCategory(category,pageable);
         return new Page4Navigator<>(pageFromJPA,navigatePages);
     }
+    public Page4Navigator<Book> listAll(int start,int size, int navigatePages){
+        Sort sort = new Sort(Sort.Direction.DESC,"id");
+        Pageable pageable = new PageRequest(start,size,sort);
+        Page<Book> pageFromJPA = bookDAO.findAll(pageable);
+        return new Page4Navigator<>(pageFromJPA,navigatePages);
+    }
     public List<Book> search(String name, int start, int size){
         Sort sort = new Sort(Sort.Direction.DESC,"id");
         Pageable page = new PageRequest(start,size,sort);

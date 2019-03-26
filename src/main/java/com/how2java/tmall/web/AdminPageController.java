@@ -17,6 +17,10 @@ public class AdminPageController {
 	public String editCategory(){
 		return "admin/editCategory";
 	}
+	@GetMapping(value = "/admin_bookAll_list")
+    public String listBookAll(){
+	    return "admin/listBookAll";
+    }
 	@GetMapping(value = "admin_book_list")
 	public String listBook(){
 		return "admin/listBook";
@@ -36,9 +40,5 @@ public class AdminPageController {
     @GetMapping(value = "admin_login")
 	public String login(){
 		return "admin/login";
-	}
-	@GetMapping(value = "admin_search")
-	public String searchBooks(){
-		return "admin/searchpage";
 	}
 }

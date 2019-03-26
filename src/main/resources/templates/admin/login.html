@@ -29,28 +29,24 @@
         });
     });
 </script>
-<div id="from">
+<div id="form">
 <form>
     <div class="mycenter">
         <div class="mysign">
-            <div class="col-lg-11 text-center text-info">
+            <div class="col-lg-12 text-center text-info">
                 <h2>
-                    请登录</h2>
+                    图书馆管理系统
+                </h2>
             </div>
-            <div class="col-lg-10">
-                <input v-model="user.name" type="text" class="form-control" name="username" placeholder="请输入账户名" required
-                       autofocus />
-            </div>
-            <div class="col-lg-10">
-            </div>
-            <div class="col-lg-10">
-                <input v-model="user.passWord" type="password" class="form-control" name="password" placeholder="请输入密码" required
-                       autofocus />
+            <div class="col-lg-11">
+                <input v-model="user.name" type="text" name="username" placeholder="请输入账户名" required autofocus/>
             </div>
             <div class="col-lg-10">
             </div>
-            <div class="col-lg-10 mycheckbox checkbox">
-                <input type="checkbox" class="col-lg-1">记住密码</input>
+            <div class="col-lg-10">
+                <input v-model="user.passWord" type="password" name="password" placeholder="请输入密码" required/>
+            </div>
+            <div class="col-lg-10">
             </div>
             <div class="col-lg-10">
             </div>

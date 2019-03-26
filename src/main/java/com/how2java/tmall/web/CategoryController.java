@@ -1,7 +1,9 @@
 package com.how2java.tmall.web;
 
+import com.how2java.tmall.pojo.Book;
 import com.how2java.tmall.pojo.Category;
 import com.how2java.tmall.service.CategoryService;
+import com.how2java.tmall.util.Page4Navigator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
@@ -14,13 +16,13 @@ public class CategoryController {
 	@Autowired CategoryService categoryService;
 
 	@GetMapping("/categories")
-	public Page list(@RequestParam(value = "start", defaultValue = "0") int start, @RequestParam(value = "size", defaultValue = "5") int size) throws Exception {
+	public Page4Navigator<Book> list(@RequestParam(value = "start", defaultValue = "0") int start, @RequestParam(value = "size", defaultValue = "5") int size) throws Exception {
 		start = start<0?0:start;
-		Page page =categoryService.list(start, size, 5);  //5表示导航分页最多有5个，像 [1,2,3,4,5] 这样
+		Page4Navigator<Book> page =categoryService.list(start, size, 5);  //5表示导航分页最多有5个，像 [1,2,3,4,5] 这样
 		return page;
 	}
 	@PostMapping("/categories")
-	public Object add(Category bean){
+	public Object add(@RequestBody Category bean){
 		categoryService.add(bean);
 		return bean;
 	}
