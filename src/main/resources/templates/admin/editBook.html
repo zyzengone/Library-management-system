@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:include="include/admin/adminHeader::html('编辑分类')">
+<head th:include="include/admin/adminHeader::html('编辑书籍')">
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
@@ -9,9 +9,10 @@
     <script>
         $(function () {      //$(function(){...})jquery中表示文档一载入完毕就执行
             var data4Vue={
-                uri:'categories',
-                listURL:'admin_category_list',
+                uri:'books',
+                listURL:'admin_book_list',
                 bean:{id:0,name:''},
+                cid:0
             };
             var vue = new Vue({
                 el:'#workingArea',
@@ -25,13 +26,13 @@
                         var url = this.uri+"/"+id;
                         axios.get(url).then(function (response) {
                             vue.bean = response.data;
+                            vue.cid = response.data.category.id;
                         })
                     },
                     update:function () {
-                        var id = getUrlParms("id");
                         var url = this.uri;
                         axios.put(url,vue.bean).then(function (response) {
-                            location.href = vue.listURL;
+                            location.href="admin_book_list?cid="+vue.cid;
                         });
                     }
                 }
@@ -41,15 +42,15 @@
     <div id="workingArea">
         <ol class="breadcrumb">
             <li><a href="/admin_category_list">所有分类</a></li>
-            <li class = "active">编辑分类</li>
+            <li class = "active">编辑书籍</li>
         </ol>
 
         <div class="panel panel-warning editDiv">
-            <div class="panel-heading">编辑分类</div>
+            <div class="panel-heading">编辑书籍</div>
             <div class="panel-body">
                 <table class="editTable">
                     <tr>
-                        <td>分类名称</td>
+                        <td>书籍名称</td>
                         <td><input  @keyup.enter="update" v-model.trim="bean.name" type="text" class="form-control"></td>
                     </tr>
                     <tr class="submitTR">

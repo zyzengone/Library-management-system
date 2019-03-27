@@ -25,6 +25,10 @@ public class AdminPageController {
 	public String listBook(){
 		return "admin/listBook";
 	}
+	@GetMapping(value = "admin_book_edit")
+	public String editBook(){
+		return "admin/editBook";
+	}
 	@GetMapping(value = "admin_user_list")
 	public String listUser(){
 		return "admin/listUser";

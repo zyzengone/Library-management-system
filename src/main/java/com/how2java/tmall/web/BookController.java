@@ -27,6 +27,11 @@ public class BookController {
         Page4Navigator<Book> page = bookService.list(cid,start,size,5);
         return page;
     }
+    @GetMapping("books/{id}")
+    public Book get(@PathVariable(value = "id") int id){
+        Book book = bookService.findOne(id);
+        return book;
+    }
     @PostMapping("/books")
     public Object add(@RequestBody Book bean){
         bookService.add(bean);
@@ -36,5 +41,10 @@ public class BookController {
     public String delete(@PathVariable("id") int id){
         bookService.delete(id);
         return null;
+    }
+    @PutMapping("/books")
+    public Object update(@RequestBody Book bean){
+        bookService.update(bean);
+        return bean;
     }
 }

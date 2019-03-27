@@ -37,8 +37,6 @@
                 },
                 add: function () {
                     var url = this.uri;
-                    // var formData = new FormData;
-                    // formData.append("name",this.bean.name); //formData方式插入数据可以插入图片等
                     axios.post(url,vue.bean).then(function () {
                         vue.list(0);
                         vue.bean = {id:0,name:''};

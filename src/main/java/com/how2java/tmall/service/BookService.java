@@ -50,4 +50,7 @@ public class BookService {
         List<Book> books = bookDAO.findByNameLike("%"+name+"%",page);
         return books;
     }
+    public Book findOne(int id){
+        return bookDAO.findOne(id);
+    }
 }

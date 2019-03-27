@@ -11,7 +11,7 @@
             user:{name:'',passWord:''}
         }
         var vue = new Vue({
-            el:'#from',
+            el:'#form',
             data:data4Vue,
             methods:{
                 login:function () {
@@ -33,12 +33,12 @@
 <form>
     <div class="mycenter">
         <div class="mysign">
-            <div class="col-lg-12 text-center text-info">
+            <div class="col-lg-11 text-center text-info">
                 <h2>
                     图书馆管理系统
                 </h2>
             </div>
-            <div class="col-lg-11">
+            <div class="col-lg-10">
                 <input v-model="user.name" type="text" name="username" placeholder="请输入账户名" required autofocus/>
             </div>
             <div class="col-lg-10">

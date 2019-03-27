@@ -4,6 +4,5 @@ import com.how2java.tmall.pojo.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserDAO extends JpaRepository<User,Integer> {
-    User getByName(String name);
     User getByNameAndPassWord(String name,String password);
 }
